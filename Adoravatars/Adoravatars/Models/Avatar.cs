@@ -10,16 +10,13 @@ using Caliburn.Micro;
 
 namespace Adoravatars.Models
 {
-    public class Avatar:PropertyChangedBase
+    public class Avatar : PropertyChangedBase
     {
         private string _name;
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
             set
             {
                 _name = value;
@@ -28,12 +25,10 @@ namespace Adoravatars.Models
         }
 
         private StorageFile _file;
+
         public StorageFile File
         {
-            get
-            {
-                return _file;
-            }
+            get => _file;
             set
             {
                 _file = value;
@@ -42,12 +37,10 @@ namespace Adoravatars.Models
         }
 
         private DownloadOperation _downloadOperation;
+
         public DownloadOperation DownloadOperation
         {
-            get
-            {
-                return _downloadOperation;
-            }
+            get => _downloadOperation;
             set
             {
                 _downloadOperation = value;
@@ -56,19 +49,37 @@ namespace Adoravatars.Models
 
         }
 
+        private DownloadState _downloadState;
 
-        private BitmapImage _image;
-        public BitmapImage Image {
-            get
-            {
-                return _image;
-            }
+        public DownloadState DownloadState
+        {
+            get => _downloadState;
             set
             {
-                _image = value;
-                NotifyOfPropertyChange(nameof(Windows.UI.Xaml.Controls.Image));
+                _downloadState = value;
+                NotifyOfPropertyChange(nameof(DownloadState));
             }
 
         }
+
+        private BitmapImage _image;
+
+        public BitmapImage Image
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                NotifyOfPropertyChange(nameof(Image));
+            }
+
+        }
+    }
+
+    public enum DownloadState
+    {
+        Started,
+        Completed,
+        Error
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Services\IStorageService.cs" />
     <Compile Include="Services\StorageService.cs" />
     <Compile Include="Utils\ImageHelper.cs" />
+    <Compile Include="Utils\VisualState.cs" />
     <Compile Include="ViewModels\AvatarViewModel.cs" />
     <Compile Include="Views\AvatarView.xaml.cs">
       <DependentUpon>AvatarView.xaml</DependentUpon>

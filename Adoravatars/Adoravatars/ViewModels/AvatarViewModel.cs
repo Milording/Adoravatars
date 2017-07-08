@@ -13,7 +13,7 @@ using Caliburn.Micro;
 
 namespace Adoravatars.ViewModels
 {
-    public class AvatarViewModel:Screen
+    public class AvatarViewModel : Screen
     {
         private readonly IAdorableService _adorableService;
         public string Test => "It's ok";
@@ -22,10 +22,7 @@ namespace Adoravatars.ViewModels
 
         public ObservableCollection<Avatar> AvatarCollection
         {
-            get
-            {
-                return _avatarCollection;
-            }
+            get { return _avatarCollection; }
             set
             {
                 _avatarCollection = value;
@@ -52,6 +49,7 @@ namespace Adoravatars.ViewModels
 
                 avatar.DownloadOperation.StartAsync().AsTask()
                     .ContinueWith(p => OnCompleted(p, avatar));
+                
 
                 AvatarCollection.Add(avatar);
             }
@@ -60,6 +58,10 @@ namespace Adoravatars.ViewModels
         private void OnCompleted(Task<DownloadOperation> task, Avatar avatar)
         {
             var resultFile = task.Result.ResultFile;
+
+            if (resultFile == null) return;
+
+            avatar.DownloadState = DownloadState.Completed;
 
             avatar.File = (StorageFile)resultFile;
 

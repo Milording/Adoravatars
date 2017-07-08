@@ -30,6 +30,7 @@ namespace Adoravatars.Services
             var avatar = new Avatar();
             avatar.Name = avatarName;
             avatar.File = await _storageService.CreateFile(avatarName + _extension);
+            avatar.DownloadState = DownloadState.Started;
 
             avatar.DownloadOperation = _apiService.GetFile(new Uri(_apiAddress + avatarName + _extension), avatar.File);
 
