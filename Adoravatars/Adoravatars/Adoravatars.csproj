@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Avatar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdorableService.cs" />
     <Compile Include="Services\ApiService.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Services\IApiService.cs" />
     <Compile Include="Services\IStorageService.cs" />
     <Compile Include="Services\StorageService.cs" />
+    <Compile Include="Utils\ImageHelper.cs" />
     <Compile Include="ViewModels\AvatarViewModel.cs" />
     <Compile Include="Views\AvatarView.xaml.cs">
       <DependentUpon>AvatarView.xaml</DependentUpon>
@@ -137,9 +139,7 @@
       <Version>5.2.3</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\AvatarView.xaml">
       <SubType>Designer</SubType>

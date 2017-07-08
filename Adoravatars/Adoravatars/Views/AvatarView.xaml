@@ -8,6 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="{Binding Test}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <GridView ItemsSource="{Binding AvatarCollection, UpdateSourceTrigger=PropertyChanged}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="120" Width="100">
+                        <StackPanel>
+                            <Image Source="{Binding Image, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="100" Width="100"/>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+        </GridView>
     </Grid>
 </Page>

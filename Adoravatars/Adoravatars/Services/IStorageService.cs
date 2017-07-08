@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace Adoravatars.Services
 {
-    public class IStorageService
+    public interface IStorageService
     {
+        Task<StorageFile> CreateFile(string filename);
     }
 }
