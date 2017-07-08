@@ -23,7 +23,7 @@ namespace Adoravatars.Utils
             var control = element as Control;
             if (control == null || e.NewValue == null) return;
 
-            await Execute.OnUIThreadAsync(() => VisualStateManager.GoToState(control, e.NewValue.ToString(), true));
+            var result = VisualStateManager.GoToState(control, e.NewValue.ToString(), true);
         }
 
         public static async void SetValue(DependencyObject element, string value)

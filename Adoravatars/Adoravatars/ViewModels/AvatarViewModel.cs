@@ -33,13 +33,10 @@ namespace Adoravatars.ViewModels
         public AvatarViewModel(IAdorableService adorableService)
         {
             _adorableService = adorableService;
-        }
-
-        protected override void OnInitialize()
-        {
+            
             AvatarCollection = new ObservableCollection<Avatar>();
         }
-
+        
         protected override async void OnActivate()
         {
             var avatarNames = _adorableService.GetAvatarNames();
@@ -50,7 +47,6 @@ namespace Adoravatars.ViewModels
                 avatar.DownloadOperation.StartAsync().AsTask()
                     .ContinueWith(p => OnCompleted(p, avatar));
                 
-
                 AvatarCollection.Add(avatar);
             }
         }
