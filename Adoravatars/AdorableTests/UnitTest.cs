@@ -1,9 +1,8 @@
 ﻿
 using System;
 using System.Threading.Tasks;
+using AdorableData.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestClassLibrary;
-using TestClassLibrary.Services;
 
 namespace AdorableTests
 {

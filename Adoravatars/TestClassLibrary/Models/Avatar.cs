@@ -1,12 +1,34 @@
 ﻿using Windows.UI.Xaml.Media.Imaging;
+using Caliburn.Micro;
 
-namespace TestClassLibrary.Models
+namespace AdorableData.Models
 {
-    public class Avatar
+    public class Avatar: PropertyChangedBase
     {
-        public string Name;
+        private string _name;
 
-        public BitmapImage Image;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                NotifyOfPropertyChange(nameof(Name));
+            }
+        }
+
+        private BitmapImage _image;
+         
+        public BitmapImage Image
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                NotifyOfPropertyChange(nameof(Image));
+            }
+
+        }
     }
 
     public enum DownloadState

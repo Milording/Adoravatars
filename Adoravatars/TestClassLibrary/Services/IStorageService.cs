@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace TestClassLibrary.Services
+namespace AdorableData.Services
 {
     public interface IStorageService
     {

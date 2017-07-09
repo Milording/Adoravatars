@@ -2,7 +2,7 @@
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 
-namespace TestClassLibrary.Services
+namespace AdorableData.Services
 {
     public interface IApiService
     {

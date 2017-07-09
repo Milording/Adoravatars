@@ -32,17 +32,19 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <StackPanel Height="150" Width="120">
-                                <Ellipse x:Name="Ellipse" Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" StrokeThickness="1"
+                            <StackPanel Height="160" Width="120">
+                                <Grid Width="100" Height="100">
+                                    <Ellipse x:Name="Ellipse" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" StrokeThickness="1"
                                          Stroke="Gray">
-                                    <Ellipse.Fill>
-                                        <ImageBrush x:Name="AvatarImage" ImageSource="{Binding Image, UpdateSourceTrigger=PropertyChanged}" />
-                                    </Ellipse.Fill>
-                                </Ellipse>
+                                        <Ellipse.Fill>
+                                            <ImageBrush x:Name="AvatarImage" ImageSource="{Binding Avatar.Image, UpdateSourceTrigger=PropertyChanged}" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
 
-                                <ProgressBar x:Name="LoadingBar" Foreground="#FF007ACC" Height="100"
+                                    <ProgressBar x:Name="LoadingBar" Foreground="#FF007ACC" 
                                              IsIndeterminate="True" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                </Grid>
+                                <TextBlock Text="{Binding Avatar.Name}" 
                                            HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Grid>

@@ -7,8 +7,8 @@
     <ProjectGuid>{E54EA713-E81D-4BD7-A52F-2537178B72D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestClassLibrary</RootNamespace>
-    <AssemblyName>TestClassLibrary</AssemblyName>
+    <RootNamespace>AdorableData</RootNamespace>
+    <AssemblyName>AdorableData</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
@@ -109,7 +109,7 @@
     <Compile Include="Services\AdorableService.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Models\Avatar.cs" />
-    <Compile Include="ViewModels\AvatarViewModel.cs" />
+    <Compile Include="ViewModels\AvatarKitViewModel.cs" />
     <Compile Include="Services\IAdorableService.cs" />
     <Compile Include="Services\IApiService.cs" />
     <Compile Include="Utils\ImageHelper.cs" />

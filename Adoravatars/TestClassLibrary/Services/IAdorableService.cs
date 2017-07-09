@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace TestClassLibrary.Services
+namespace AdorableData.Services
 {
     public interface IAdorableService
     {

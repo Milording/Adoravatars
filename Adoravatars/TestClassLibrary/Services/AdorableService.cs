@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
-using TestClassLibrary.Utils;
+using AdorableData.Utils;
 
-namespace TestClassLibrary.Services
+namespace AdorableData.Services
 {
     public class AdorableService:IAdorableService
     {
@@ -36,8 +36,15 @@ namespace TestClassLibrary.Services
                 File = file
             };
 
-            downloadOperation.StartAsync().AsTask()
-                .ContinueWith(p => OnCompleted(p, descriptor));
+            try
+            {
+                await downloadOperation.StartAsync().AsTask()
+                    .ContinueWith(p => OnCompleted(p, descriptor));
+            }
+            catch (Exception e)
+            {
+                
+            }
 
             return descriptor.Image;
         }

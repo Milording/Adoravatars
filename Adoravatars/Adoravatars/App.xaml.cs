@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Adoravatars.Services;
+using AdorableData.Services;
 using Adoravatars.ViewModels;
 using Adoravatars.Views;
 using Caliburn.Micro;

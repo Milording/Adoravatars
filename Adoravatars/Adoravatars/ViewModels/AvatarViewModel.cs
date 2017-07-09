@@ -6,23 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
-using Adoravatars.Models;
-using Adoravatars.Services;
+using AdorableData.Services;
 using Adoravatars.Utils;
 using Caliburn.Micro;
+using AdorableData.ViewModels;
 
 namespace Adoravatars.ViewModels
 {
     public class AvatarViewModel : Screen
     {
         private readonly IAdorableService _adorableService;
-        public string Test => "It's ok";
+        
+        private ObservableCollection<AvatarKitViewModel> _avatarCollection;
 
-        private ObservableCollection<Avatar> _avatarCollection;
-
-        public ObservableCollection<Avatar> AvatarCollection
+        public ObservableCollection<AvatarKitViewModel> AvatarCollection
         {
-            get { return _avatarCollection; }
+            get => _avatarCollection;
             set
             {
                 _avatarCollection = value;
@@ -34,7 +33,7 @@ namespace Adoravatars.ViewModels
         {
             _adorableService = adorableService;
             
-            AvatarCollection = new ObservableCollection<Avatar>();
+            AvatarCollection = new ObservableCollection<AvatarKitViewModel>();
         }
         
         protected override async void OnActivate()
@@ -42,26 +41,12 @@ namespace Adoravatars.ViewModels
             var avatarNames = _adorableService.GetAvatarNames();
             foreach (var avatarName in avatarNames)
             {
-                var avatar = await _adorableService.GetAvatar(avatarName);
+                var avatar = new AvatarKitViewModel(_adorableService, avatarName);
 
-                avatar.DownloadOperation.StartAsync().AsTask()
-                    .ContinueWith(p => OnCompleted(p, avatar));
-                
+                await avatar.Load();
+
                 AvatarCollection.Add(avatar);
             }
-        }
-
-        private void OnCompleted(Task<DownloadOperation> task, Avatar avatar)
-        {
-            var resultFile = task.Result.ResultFile;
-
-            if (resultFile == null) return;
-
-            avatar.DownloadState = DownloadState.Completed;
-
-            avatar.File = (StorageFile)resultFile;
-
-            ImageHelper.ConvertStorageFileToImage(avatar);
         }
     }
 }

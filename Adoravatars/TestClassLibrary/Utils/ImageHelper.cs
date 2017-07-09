@@ -1,26 +1,44 @@
 ﻿using System;
+using System.Diagnostics;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
-using TestClassLibrary.Services;
+using AdorableData.Services;
 
-namespace TestClassLibrary.Utils
+namespace AdorableData.Utils
 {
     public static  class ImageHelper
     {
         public static async void ConvertStorageFileToImage(ImageDescriptor descriptor)
         {
-            using (var stream = (FileRandomAccessStream) await descriptor.File.OpenAsync(FileAccessMode.Read))
+            try
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.SetSource(stream);
-                    descriptor.Image = bitmapImage;
-                });
 
+                using (var stream = (FileRandomAccessStream) await descriptor.File.OpenAsync(FileAccessMode.Read))
+                {
+                    try
+                    {
+                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                            () =>
+                            {
+                                var bitmapImage = new BitmapImage();
+                                bitmapImage.SetSource(stream);
+                                descriptor.Image = bitmapImage;
+                            });
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                Debug.WriteLine(e.Message);
             }
         }
     }
