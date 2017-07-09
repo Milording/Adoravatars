@@ -39,7 +39,8 @@
                                         <ImageBrush x:Name="AvatarImage" ImageSource="{Binding Image, UpdateSourceTrigger=PropertyChanged}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <ProgressBar x:Name="LoadingBar" Foreground="#FF007ACC"
+
+                                <ProgressBar x:Name="LoadingBar" Foreground="#FF007ACC" Height="100"
                                              IsIndeterminate="True" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                            HorizontalAlignment="Center"/>

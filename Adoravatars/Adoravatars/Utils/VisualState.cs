@@ -18,7 +18,7 @@ namespace Adoravatars.Utils
                 typeof(VisualState),
                 new PropertyMetadata(string.Empty, ValuePropertyChanged));
 
-        private static async void ValuePropertyChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
+        private static void ValuePropertyChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
         {
             var control = element as Control;
             if (control == null || e.NewValue == null) return;

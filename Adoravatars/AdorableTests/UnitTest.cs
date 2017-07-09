@@ -1,6 +1,9 @@
 ﻿
 using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestClassLibrary;
+using TestClassLibrary.Services;
 
 namespace AdorableTests
 {
@@ -8,9 +11,12 @@ namespace AdorableTests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public async Task TestMethod1()
         {
-            var sum = Add(2, 2);
+            StorageService ss = new StorageService();
+            var file = await ss.CreateFile("test.png");
+            
+            Assert.IsNotNull(file);
         }
 
         private int Add(int x, int y)
