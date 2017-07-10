@@ -30,7 +30,7 @@ namespace AdorableData.Services
             var file = await _storageService.CreateFile(avatarName + _extension);
             
             var downloadOperation = _apiService.GetFile(new Uri(_apiAddress + avatarName + _extension), file);
-
+            
             var descriptor = new ImageDescriptor
             {
                 File = file
@@ -38,31 +38,40 @@ namespace AdorableData.Services
 
             try
             {
-                await downloadOperation.StartAsync().AsTask()
-                    .ContinueWith(p => OnCompleted(p, descriptor));
+                var downloadTask = downloadOperation.StartAsync().AsTask();
+                var bitmap  = await downloadTask.ContinueWith(p => OnCompleted(p, descriptor));
+                var bit = await bitmap;
+                return bit;
             }
             catch (Exception e)
             {
-                
+                return null;  
             }
             
-            return imDesc?.Image;
+            
+            //return image;
         }
 
         private ImageDescriptor imDesc = new ImageDescriptor();
 
         private object _lock = new object();
 
-        private async void OnCompleted(Task<DownloadOperation> task, ImageDescriptor descriptor)
+        private async Task<BitmapImage> OnCompleted(Task<DownloadOperation> task, ImageDescriptor descriptor)
         {
             var resultFile = task.Result.ResultFile;
 
-            if (resultFile == null) return;
+            if (resultFile == null) return null;
 
-            var temp = await ImageHelper.ConvertStorageFileToImage(descriptor);
+            try
+            {
+                var temp = await ImageHelper.ConvertStorageFileToImage(descriptor);
+                return temp;
+            }
 
-            lock (_lock)
-                imDesc.Image = temp;
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public List<string> GetAvatarNames()
