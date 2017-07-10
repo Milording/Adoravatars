@@ -2,6 +2,8 @@
 using System;
 using System.Threading.Tasks;
 using AdorableData.Services;
+using AdorableData.ViewModels;
+using Adoravatars.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdorableTests
@@ -10,15 +12,23 @@ namespace AdorableTests
     public class UnitTest1
     {
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task TestAvatrnameNull()
         {
-            StorageService ss = new StorageService();
-            var file = await ss.CreateFile("test.png");
-            
-            Assert.IsNotNull(file);
+            var avatarKit = new AvatarKitViewModel(new AdorableService(new ApiService(), new StorageService()), null);
+
+            await avatarKit.Load();
+
+            Assert.AreEqual(avatarKit.DownloadState, DownloadState.Error);
         }
 
-        private int Add(int x, int y)
-            => x + y;
+        [TestMethod]
+        public async Task TestAvatrnameIsOk()
+        {
+            var avatarKit = new AvatarKitViewModel(new AdorableService(new ApiService(), new StorageService()), "Nick");
+
+            await avatarKit.Load();
+
+            Assert.AreEqual(avatarKit.DownloadState, DownloadState.Completed);
+        }
     }
 }

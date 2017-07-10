@@ -30,11 +30,4 @@ namespace AdorableData.Models
 
         }
     }
-
-    public enum DownloadState
-    {
-        Started,
-        Completed,
-        Error
-    }
 }

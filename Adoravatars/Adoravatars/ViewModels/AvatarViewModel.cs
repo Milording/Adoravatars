@@ -15,8 +15,14 @@ namespace Adoravatars.ViewModels
 {
     public class AvatarViewModel : Screen
     {
+        #region Services
+
         private readonly IAdorableService _adorableService;
-        
+
+        #endregion
+
+        #region Bindable properties
+
         private ObservableCollection<AvatarKitViewModel> _avatarCollection;
 
         public ObservableCollection<AvatarKitViewModel> AvatarCollection
@@ -29,13 +35,18 @@ namespace Adoravatars.ViewModels
             }
         }
 
+        #endregion
+
         public AvatarViewModel(IAdorableService adorableService)
         {
             _adorableService = adorableService;
-            
+
             AvatarCollection = new ObservableCollection<AvatarKitViewModel>();
         }
-        
+
+
+        #region Overrided methods
+
         protected override async void OnActivate()
         {
             var avatarNames = _adorableService.GetAvatarNames();
@@ -48,5 +59,7 @@ namespace Adoravatars.ViewModels
                 AvatarCollection.Add(avatar);
             }
         }
+
+        #endregion
     }
 }

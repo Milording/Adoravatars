@@ -141,6 +141,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Adoravatars\Adoravatars.csproj">
+      <Project>{21858D28-833B-4D4A-A899-1BB34FFF5E71}</Project>
+      <Name>Adoravatars</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestClassLibrary\AdorableData.csproj">
       <Project>{E54EA713-E81D-4BD7-A52F-2537178B72D9}</Project>
       <Name>AdorableData</Name>

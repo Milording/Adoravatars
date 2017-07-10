@@ -16,12 +16,14 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AdorableData.Services;
+using AdorableData.ViewModels;
 using Adoravatars.ViewModels;
 using Adoravatars.Views;
 using Caliburn.Micro;
 
 namespace Adoravatars
 {
+    [Bindable]
     sealed partial class App 
     {
         private WinRTContainer _container;
