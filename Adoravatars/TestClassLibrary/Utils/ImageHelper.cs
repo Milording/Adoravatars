@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -11,7 +12,7 @@ namespace AdorableData.Utils
 {
     public static  class ImageHelper
     {
-        public static async void ConvertStorageFileToImage(ImageDescriptor descriptor)
+        public static async Task<BitmapImage> ConvertStorageFileToImage(ImageDescriptor descriptor)
         {
             try
             {
@@ -40,6 +41,8 @@ namespace AdorableData.Utils
 
                 Debug.WriteLine(e.Message);
             }
+
+            return descriptor.Image;
         }
     }
 }

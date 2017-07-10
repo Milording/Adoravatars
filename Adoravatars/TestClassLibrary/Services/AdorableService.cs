@@ -45,17 +45,24 @@ namespace AdorableData.Services
             {
                 
             }
-
-            return descriptor.Image;
+            
+            return imDesc?.Image;
         }
 
-        private void OnCompleted(Task<DownloadOperation> task, ImageDescriptor descriptor)
+        private ImageDescriptor imDesc = new ImageDescriptor();
+
+        private object _lock = new object();
+
+        private async void OnCompleted(Task<DownloadOperation> task, ImageDescriptor descriptor)
         {
             var resultFile = task.Result.ResultFile;
 
             if (resultFile == null) return;
-            
-            ImageHelper.ConvertStorageFileToImage(descriptor);
+
+            var temp = await ImageHelper.ConvertStorageFileToImage(descriptor);
+
+            lock (_lock)
+                imDesc.Image = temp;
         }
 
         public List<string> GetAvatarNames()

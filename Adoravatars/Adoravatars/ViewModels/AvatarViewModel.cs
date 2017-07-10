@@ -43,7 +43,7 @@ namespace Adoravatars.ViewModels
             {
                 var avatar = new AvatarKitViewModel(_adorableService, avatarName);
 
-                await avatar.Load();
+                avatar.Load();
 
                 AvatarCollection.Add(avatar);
             }
